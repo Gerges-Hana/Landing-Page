@@ -32,6 +32,7 @@ const up =document.querySelector('.up');
 const upTop =document.querySelector(".Top__btn");
 const [...sectionsss] = document.getElementsByTagName("section");
 const btn_arr=document.getElementsByClassName("menu__link");
+const menu_link=document.querySelectorAll("#avbar__list");
 
  
 
@@ -49,23 +50,26 @@ const btn_arr=document.getElementsByClassName("menu__link");
  * and the number of section nav equal number of section content numbers 
  */
 
-
-
 // as number of section is 4 as the number of navbar equal 4 
 // make function loop to create navbar 
- let num_nav = 4;
-const create_Nav = () => {
-    // num_nav++;
-    for(let i=1;i<=4;i++){
 // the content html nave 
-      const Nav_content = `<li><a href="#section${i}" data_nav_head="${i}" id="sec${i}" class="menu__link " > section ${i}</a></li>`;
-  navbar__list.insertAdjacentHTML("beforeend", Nav_content);
+let num_nav = 4;
+const create_Nav = () => {
+  for(let i=1;i<=4;i++){
+    const Nav_content = `<li><a href="#section${i}" data_nav_head="${i}" id="sec${i}" class="menu__link " > section ${i}</a></li>`;
+     navbar__list.insertAdjacentHTML("beforeend", Nav_content);
     }
-  
 };
 
 
 
+// It is a function that helps make scroll and movement on the site more flexible && smoothing 
+navbar__list.addEventListener("click", function(event) {
+         sectionsss.forEach(element => {	
+          element.body.bodyscrollIntoView({ behavior: "smooth" });
+         });
+         event.preventDefault();
+}, false);
 
 
  /**
@@ -76,14 +80,11 @@ const create_Nav = () => {
 ////////////////////////////////////////////////////////////
 
 // Add class 'active' to section when near top of viewport
-
-
-
 // this function define the section position on window and return true if window have this section
 // it have pramiter of section on it 
-  // defind top & bottom of section to used it return it to add class active 
-  // have a height of sections in window and stor it in const 
-  // return true if bottom of section beger than zero &top smaller than height of section  
+// defind top & bottom of section to used it return it to add class active 
+// have a height of sections in window and stor it in const 
+// return true if bottom of section beger than zero &top smaller than height of section  
 
 const def_section_position = (sec) => {
   const top = sec.getBoundingClientRect().top;
@@ -92,12 +93,11 @@ const def_section_position = (sec) => {
   return bottom >= 0 && top <= have_sec_height
 };
 
-
-
 // this function test if window have section[i] add active section  class 
-    // add event when scroll 
-      // action when event scroll of sections ,call def_section_position function  to defind height section
-      // if true add active section 
+// add event when scroll 
+// action when event scroll of sections ,call def_section_position function  
+// to defind height section
+// if true add active section 
 
 const Add_Active_Section = () => {
 	sectionsss.map((sec) => {
@@ -123,7 +123,7 @@ window.onscroll = function () {
 const scroll_Top_btn=(addEventListener,function(){
  window.scrollTo({
     top: 0,
-    behavior: "smooth",
+    behavior:"smooth",
   });
 
 });

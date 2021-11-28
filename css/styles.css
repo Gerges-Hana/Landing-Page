@@ -10,9 +10,6 @@
 
 
 /* ---- Base Rules ---- */
-html{
-    scroll-behavior: smooth;
-}
 body {
     background: rgb(136,203,171);
     background: linear-gradient(0deg, rgba(136,203,171,1) 0%, rgba(0,13,60,1) 100%);
@@ -145,7 +142,7 @@ section {
     color: #000;
     transition: ease 0.3s all;
     border-radius: 5%;
-    margin: 0.05em;
+    margin: 0.01em;
   }
 
   
