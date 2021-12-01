@@ -56,21 +56,18 @@ const menu_link=document.querySelectorAll("#avbar__list");
 let num_nav = 4;
 const create_Nav = () => {
   for(let i=1;i<=4;i++){
-    const Nav_content = `<li><a href="#section${i}" data_nav_head="${i}" id="sec${i}" class="menu__link " > section ${i}</a></li>`;
+    const Nav_content = `<li><a  data_nav_head="${i}" id="sec${i}" class="menu__link " onclick="scrollToDiv(${i})"> section ${i}</a></li>`;
      navbar__list.insertAdjacentHTML("beforeend", Nav_content);
     }
 };
 
 
-
-// It is a function that helps make scroll and movement on the site more flexible && smoothing 
-navbar__list.addEventListener("click", function(event) {
-         sectionsss.forEach(element => {	
-          element.body.bodyscrollIntoView({ behavior: "smooth" });
-         });
-         event.preventDefault();
-}, false);
-
+  // this function select the section by id and do "scrollIntoView" method that scroll page to our section. if you use this way you should delete href in tag a in every nav link
+  function scrollToDiv(id) {
+    console.log(id);
+    let el = document.getElementById(`section${id}`);
+    el.scrollIntoView({behavior:'smooth'});
+  }
 
  /**
  * End Helper Functions
