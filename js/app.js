@@ -33,8 +33,8 @@ const upTop =document.querySelector(".Top__btn");
 const [...sectionsss] = document.getElementsByTagName("section");
 const btn_arr=document.getElementsByClassName("menu__link");
 const menu_link=document.querySelectorAll("#avbar__list");
-
- 
+const togglee_btn =document.getElementsByClassName('togglee-btn');
+ const id_nav=document.getElementById("id_nav");
 
 
 
@@ -53,21 +53,31 @@ const menu_link=document.querySelectorAll("#avbar__list");
 // as number of section is 4 as the number of navbar equal 4 
 // make function loop to create navbar 
 // the content html nave 
-let num_nav = 4;
+let num_nav = [...sectionsss].length;
 const create_Nav = () => {
-  for(let i=1;i<=4;i++){
-    const Nav_content = `<li><a  data_nav_head="${i}" id="sec${i}" class="menu__link " onclick="scrollToDiv(${i})"> section ${i}</a></li>`;
+  for(let i=1;i<=num_nav;i++){
+    const Nav_content = `<li><a  data_nav="section${i}" id="sec${i}" class="menu__link " onclick="scrollToDiv(${i})"> section ${i}</a></li>`;
      navbar__list.insertAdjacentHTML("beforeend", Nav_content);
     }
 };
 
 
+
+//////////////////////////
+
+// the function as used when i have responsive view when small the width of window 
+function myfunction(){
+  id_nav.classList.toggle("show");
+}
   // this function select the section by id and do "scrollIntoView" method that scroll page to our section. if you use this way you should delete href in tag a in every nav link
   function scrollToDiv(id) {
-    console.log(id);
+    // console.log(id);
     let el = document.getElementById(`section${id}`);
     el.scrollIntoView({behavior:'smooth'});
+    return(id);
+   
   }
+
 
  /**
  * End Helper Functions
@@ -95,17 +105,26 @@ const def_section_position = (sec) => {
 // action when event scroll of sections ,call def_section_position function  
 // to defind height section
 // if true add active section 
+// define new varyable let num_sec that hanve attribute in eath section 
+// as data matcting num of link atrribut in navbar 
+// add activ class to this link 
+// elae remov this class from as all linkess
 
 const Add_Active_Section = () => {
 	sectionsss.map((sec) => {
 	  window.addEventListener("scroll", (event) => {
-      def_section_position(sec)
-		 ? sec.classList.add("your-active-class")
-     : sec.classList.remove("your-active-class")
+    const num_sec= sec.getAttribute(`x`)-1;
+    if(def_section_position(sec)){
+      sec.classList.add("your-active-class") ;
+    btn_arr[num_sec].classList.add("nav_btn_active");
+      }else{
+      sec.classList.remove("your-active-class");
+    btn_arr[num_sec].classList.remove("nav_btn_active");
+     
+    }
 	  });
 	});
   };
-
 
 ///////////////////////////////////////////////////////////////////////////
 // Scroll to anchor ID using scrollTO event
@@ -122,7 +141,6 @@ const scroll_Top_btn=(addEventListener,function(){
     top: 0,
     behavior:"smooth",
   });
-
 });
 
 /**

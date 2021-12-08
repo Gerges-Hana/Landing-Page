@@ -76,6 +76,7 @@ section {
 
 .navbar__menu li {
     display: inline-block;
+    cursor: pointer;
 }
 
 .navbar__menu .menu__link {
@@ -143,16 +144,65 @@ section {
   .navbar__menu .menu__link:hover ,.nav_active{
     background: #4cbee0;
     color: #000;
-    transition: ease 0.3s all;
+    transition: ease 0.05s all;
     border-radius: 5%;
     margin: 0.01em;
   }
 
+  /* style of midyaQuery navbar  */
   
-  .navbar__menu .active-link {
+  .togglee-btn{
+      width: 4em;
+      position: absolute;
+      right: 1.3em;
+      top: 0.40em;
+      border: 2px solid #cc1;
+      padding-top: 0.5em;
+      border-radius: 5px;
+      text-align: center;
+      display: none;
+      cursor: pointer;
+  }
+
+  .togglee-btn span{
+      display: inline-block;
+      width: 3em;
+      height: 2px;
+      background-color: #cc1;
+      margin-bottom: 8px;
+     
+  }
+
+
+@media (max-width:800px){
+    .togglee-btn{
+        display: block;
+    } 
+   .navbar__menu{
+        display: none;
+        width: 100%;
+
+    }
+   .show{
+
+    display: block;
+    }
+
+    .navbar__menu li{
+        padding: 1em;
+        width: 100%;
+        text-align: center;
+       
+    }
+    .navbar__menu li a{
+        color: black;
+    }
+}
+/* /////////////////////////////////// */
+ .nav_btn_active {
     background: #9feef8;
     color: rgb(7, 7, 7);
-    transition: ease 0.3s all;
+    transition: ease 0.05s all;
     border-radius: 5px;
   }
   
